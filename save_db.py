@@ -45,6 +45,7 @@ def update_data(data):
               ' = %s, ' + config['col'][3] + ' = %s, ' \
               + config['col'][4] + ' = "sync"'\
               + ' where ' + config['col'][2] + ' = %s'
+        print(sql)
         cursor.executemany(sql, data_update)
         cursor.close()
         conn.commit()
@@ -69,12 +70,12 @@ def query(cursor, sql):
         cursor.execute(sql)
         result = cursor.fetchall()
         desc = cursor.description
-        rows = []
-        for cloumn in result:
-            row = {}
-            for i in range(0, len(cloumn)):
-                row[desc[i][0]] = cloumn[i]
-            rows.append(row)
+        rows = [cloumn[0] for cloumn in result]
+        # for cloumn in result:
+            # row = {}
+            # for i in range(0, len(cloumn)):
+            #     row[desc[i][0]] = cloumn[i]
+            # rows.append(row)
         return rows
     except pymysql.Error as e:
         print('mysql error: %s SQL: %s' % (e, sql))

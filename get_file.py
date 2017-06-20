@@ -97,6 +97,8 @@ def save_all(to_html, to_db):
         insert_data = list(set(all_data) - set(update_data))
         # insert
         sb.insert_data(insert_data)
+        print(len(insert_data))
+        print(len(update_data))
         # update
         sb.update_data(update_data)
 
