@@ -8,8 +8,8 @@ from selenium.webdriver.common.keys import Keys
 
 
 name_passwd = {
-    'name': 'xuexin@guanghe.tv',
-    'passwd': 'cyq940517'
+    'name': '123456@126.com',
+    'passwd': '123456'
 }
 
 
