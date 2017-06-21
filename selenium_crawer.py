@@ -3,6 +3,7 @@
 
 import time
 from selenium import webdriver
+import sys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 
@@ -16,14 +17,17 @@ name_passwd = {
 def get_basic_info(driver, base_url, path):
     driver.get(base_url + path)
     print(driver.page_source)
-    print(driver.current_url)
+    before_url = driver.current_url
     email = driver.find_element_by_name('email')
     email.send_keys(name_passwd['name'])
     password = driver.find_element_by_name('password')
     password.send_keys(name_passwd['passwd'])
     driver.find_element_by_id('bd-login-submit').click()
     time.sleep(5)
-    print(driver.current_url)
+    after_url = driver.current_url
+    if before_url == after_url:
+        print('登陆失败')
+        sys.exit()
 
 
 def get_desktop_info(driver, base_url, path):
